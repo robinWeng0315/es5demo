@@ -1,6 +1,5 @@
 package com.yao.search.EsDemo;
 
-import com.yao.search.biz.model.dto.product.Product;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.entity.ContentType;
@@ -38,8 +37,7 @@ public class RestClientTest {
             Response response = restClient.performRequest("POST", "/product/_search", Collections.<String, String>emptyMap(), entity);
             JsonNode jsonNode = mapper.readTree(response.getEntity().getContent());
             for (JsonNode node : jsonNode.get("hits").get("hits")) {
-                Product product = mapper.readValue(node.get("_source"), Product.class);
-                System.out.println(product);
+              
             }
         } catch (IOException e) {
             e.printStackTrace();
